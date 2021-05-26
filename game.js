@@ -4,8 +4,13 @@ let context;
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.querySelector("#myCanvas");
     context = canvas.getContext("2d");
+    main_menu();
     draw();
 })
+
+function main_menu() {
+    
+}
 
 function draw() {
     context.canvas.width = window.innerWidth;
