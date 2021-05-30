@@ -4,11 +4,15 @@ let player1 = {
     x : 0,
     y : 0
 }
+let ball_rep = {
+    x : 0,
+    y : 0,
+    direction : 0
+}
 let start = true;
 let inMainMenu = true;
 
 window.addEventListener('mousemove', function(e) {
-    console.log('x: ' + e.x + '\ny: ' + e.y);
     player1.x = e.x;
     player1.y = e.y;
 });
@@ -16,13 +20,13 @@ window.addEventListener('mousemove', function(e) {
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.querySelector("#myCanvas");
     context = canvas.getContext("2d");
-    main_menu();
+    draw();
 })
 
 function main_menu() {
     context.fillStyle = '#000000';
-    context.font = '25pt Times New Roman';
-    context.fillText("Pong", window.innerWidth/20, window.innerHeight/20);
+    context.font = '200pt Times New Roman';
+    context.fillText("Pong", window.innerWidth/3.4, window.innerHeight/2);
     var button = document.createElement("button");
     button.innerHTML = "Play Game";
     var body = document.getElementsByTagName("body")[0];
@@ -30,7 +34,7 @@ function main_menu() {
     button.addEventListener("click", () => {
         context.clearRect(0,0,canvas.width,canvas.height);
         body.removeChild(button);
-        draw();
+        inMainMenu = false;
     })
 }
 
@@ -38,20 +42,27 @@ function draw() {
     context.clearRect(0,0,canvas.width,canvas.height);
     context.canvas.width = window.innerWidth;
     context.canvas.height = window.innerHeight;
-    print_constant_field();
-    ball();
-    players();
-    tick();
+    if (inMainMenu == true) {
+        main_menu();
+    } else {
+        print_constant_field();
+        ball();
+        players();
+        tick();
+    }
+    
 }
 
 function ball() {
-    if(start == true) {
-        seconds = 5;
-        setInterval(() => {
-            context.fillText("Game begin in " + seconds + " seconds", 150, 400);
-            seconds -= 1;
-        }, 5000)
+    if (start == true) {
+        ball_rep.x = window.innerWidth/2;
+        ball_rep.y = window.innerHeight/2;
+        ball_rep.direction = Math.floor(Math.random() * (2 - 0));
+        console.log(ball_rep.direction);
+        start = false;
     }
+    context.font = '100pt Candara';
+    context.fillText(".",ball_rep.x,ball_rep.y);
 }
 
 function players() {
