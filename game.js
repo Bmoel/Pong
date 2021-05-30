@@ -1,6 +1,17 @@
 let canvas;
 let context;
+let player1 = {
+    x : 0,
+    y : 0
+}
+let start = true;
 let inMainMenu = true;
+
+window.addEventListener('mousemove', function(e) {
+    console.log('x: ' + e.x + '\ny: ' + e.y);
+    player1.x = e.x;
+    player1.y = e.y;
+});
 
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.querySelector("#myCanvas");
@@ -24,21 +35,35 @@ function main_menu() {
 }
 
 function draw() {
+    context.clearRect(0,0,canvas.width,canvas.height);
     context.canvas.width = window.innerWidth;
     context.canvas.height = window.innerHeight;
     print_constant_field();
-    player1();
-    computer_player();
+    ball();
+    players();
     tick();
 }
 
-function player1() {
+function ball() {
+    if(start == true) {
+        seconds = 5;
+        setInterval(() => {
+            context.fillText("Game begin in " + seconds + " seconds", 150, 400);
+            seconds -= 1;
+        }, 5000)
+    }
+}
+
+function players() {
+    context.font = '175pt Times New Roman'
+    context.fillText("|", 100, player1.y);
+    computer();
+}
+
+function computer() {
 
 }
 
-function computer_player() {
-    
-}
 
 function print_constant_field() {
     context.fillStyle = '#000000';
