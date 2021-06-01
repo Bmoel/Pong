@@ -107,7 +107,7 @@ function ball() {
         ball_rep.directionY = 1;
     }
     //If ball hits player 1 
-    if (ball_rep.x == window.innerWidth/15 && ball_rep.y >= player1.upper_bound && ball_rep.y <= player1.lower_bound) {
+    if (ball_rep.x == 100 && ball_rep.y >= player1.upper_bound && ball_rep.y <= player1.lower_bound) {
         ball_rep.directionX = 1;
     }
     //If ball hits computer
@@ -129,12 +129,12 @@ function ball() {
 function players() {
     num = Math.floor(window.innerHeight/6);
     context.font = 'bold ' + num + 'px Times New Roman';
-    context.fillText("|", window.innerWidth/15, player1.y);
+    context.fillText("|", 100, player1.y);
     draw_computer();
 }
 
 function draw_computer() {
-    computer.x = window.innerWidth - window.innerWidth/15
+    computer.x = window.innerWidth - 100
     computer.y = ball_rep.y;
     computer.upper_bound = Math.floor(computer.y - window.innerHeight/9);
     computer.lower_bound = Math.floor(computer.y + window.innerHeight/9);
