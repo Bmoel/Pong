@@ -29,7 +29,7 @@ window.addEventListener('mousemove', function(e) {
     player1.x = Math.floor(e.x);
     player1.y = Math.floor(e.y);
     player1.upper_bound = Math.floor(e.y - window.innerHeight/9);
-    player1.lower_bound = Math.floor(e.y + window.innerHeight/12);
+    player1.lower_bound = Math.floor(e.y + window.innerHeight/9);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -107,7 +107,7 @@ function ball() {
         ball_rep.directionY = 1;
     }
     //If ball hits player 1 
-    if (ball_rep.x == 100 && ball_rep.y >= player1.upper_bound && ball_rep.y <= player1.lower_bound) {
+    if (ball_rep.x == window.innerWidth/15 && ball_rep.y >= player1.upper_bound && ball_rep.y <= player1.lower_bound) {
         ball_rep.directionX = 1;
     }
     //If ball hits computer
@@ -137,7 +137,7 @@ function draw_computer() {
     computer.x = window.innerWidth - window.innerWidth/15
     computer.y = ball_rep.y;
     computer.upper_bound = Math.floor(computer.y - window.innerHeight/9);
-    computer.lower_bound = Math.floor(computer.y + window.innerHeight/12);
+    computer.lower_bound = Math.floor(computer.y + window.innerHeight/9);
     context.fillText("|", computer.x, computer.y);
 }
 
