@@ -134,8 +134,9 @@ function players() {
 }
 
 function draw_computer() {
-    computer.x = window.innerWidth - 100
-    computer.y = ball_rep.y;
+    computer.x = window.innerWidth - 100;
+    let variation = Math.floor(Math.random() * (105 - 100) + 100);
+    computer.y = ball_rep.y + variation;
     computer.upper_bound = Math.floor(computer.y - window.innerHeight/9);
     computer.lower_bound = Math.floor(computer.y + window.innerHeight/9);
     context.fillText("|", computer.x, computer.y);
